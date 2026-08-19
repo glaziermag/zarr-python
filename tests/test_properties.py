@@ -448,3 +448,10 @@ def test_array_metadata_meets_spec(meta: ArrayV2Metadata | ArrayV3Metadata) -> N
         assert serialized_complex_float_is_valid(asdict_dict["fill_value"])
     elif dtype_native.kind in ("M", "m") and np.isnat(meta.fill_value):
         assert asdict_dict["fill_value"] == -9223372036854775808
+
+
+# FORK-ONLY DEMO (glaziermag/zarr-python): deterministic failure so a
+# workflow_dispatch run exercises the "Generate and publish the report" step
+# exactly as a failing nightly would. Not proposed upstream.
+def test_fork_demo_alarm_trigger() -> None:
+    raise AssertionError("fork-only demo failure to exercise issue-from-pytest-log reporting")
